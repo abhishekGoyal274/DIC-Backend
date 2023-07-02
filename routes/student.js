@@ -39,7 +39,7 @@ router.post("/upload", upload.single("image"), async function (req, res) {
   try {
     profile = req.file.filename;
   } catch (err) {
-    profile = "default";
+    profile = "default.jpg";
   }
   let {
     name,
