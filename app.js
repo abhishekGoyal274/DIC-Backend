@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -21,12 +21,11 @@ app.get("*", (req, res) => {
 });
 
 // Server and Database
-app.listen(process.env.PORT || 8000, () => console.log(`Server started on port 8000`));
-mongoose.set("strictQuery", true);
-mongoose.connect(
-  process.env.MDB_CONNECT,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
+app.listen(process.env.PORT || 8000, () =>
+  console.log(`Server started on port 8000`)
 );
+mongoose.set("strictQuery", true);
+mongoose.connect(process.env.MDB_CONNECT, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
