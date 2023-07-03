@@ -10,6 +10,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
+
 var backendHtml =
   '\
         <html>\
@@ -17,8 +18,8 @@ var backendHtml =
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\
         <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">\
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">\
-        <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/en/9/94/UIET_logo.png">\
-        <title>API DIC-WEB-DEV</title>\
+        <link rel="icon" type="image/x-icon" href="https://puchd.ac.in/asset/pu-logo.png">\
+        <title>API PuMeet</title>\
             <body style="background-color:black; margin:0px; padding:0px; font-family: Josefin Sans, sans-serif;;">\
                 <div style="display: flex;\
                     justify-content: center;\
@@ -39,7 +40,10 @@ var backendHtml =
 app.get("/", (req, res) => {
   res.send(backendHtml);
 });
+
 app.use("/uploads", express.static("uploads"));
+
+app.use("/querry", require("./routes/querry"));
 app.use("/verification", require("./routes/veification"));
 app.use("/student", require("./routes/student"));
 
@@ -49,7 +53,7 @@ app.get("*", (req, res) => {
 });
 
 // Server and Database
-app.listen(process.env.PORT || 8000,   () =>
+app.listen(process.env.PORT || 8000, () =>
   console.log(`Server started on port 8000`)
 );
 mongoose.set("strictQuery", true);
